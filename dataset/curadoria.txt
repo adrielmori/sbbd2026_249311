@@ -1,0 +1,43 @@
+
+📝 Ata Técnica de Curadoria de Vídeos — Análise de Classificação (Categoria e Veracidade)
+
+Objetivo: Avaliação qualitativa de amostras de vídeos com base nos resultados de classificação por modelos de linguagem, com foco em acurácia na categoria e no label.
+
+✅ Casos com classificação adequada na categoria:
+- 195, 199, 162, 115, 154, 15, 126, 138, 135, 30 — Modelos classificaram corretamente a categoria.
+- 135 — Destaca-se como um bom exemplo para análise qualitativa futura.
+- 174, 194 — Respostas consistentes; boas evidências de acerto do modelo.
+- 204, 200 — Boa performance atribuída ao modelo "William".
+
+❌ Casos com erro evidente na categoria:
+- 147 — Erro claro dos modelos na classificação da categoria.
+- 144 — Alta taxa de erro, mesmo em vídeos verídicos.
+- 152, 193, 130 — Classificações incorretas com alto grau de evidência.
+- 115 — Além da veracidade, modelos erraram a categoria por não associarem o orador ao Donald Trump; também houve falha na transcrição de trecho em inglês.
+- 149 — Resultados confusos, possivelmente devido à força de argumentação ambígua.
+
+⚠️ Casos inconclusivos ou sensíveis:
+- 160 — Classificação "inconclusiva" justificada, com erro também na categoria.
+- 125 — Exemplo relevante para revisão do preprocessing. A notícia descrita não foi detectada no results_whisper_large-v3.csv; houve falha ao associar a imagem da notícia ao texto.
+- 127 — Mostra a importância de justificar decisões em casos inverídicos sutis.
+- 128 - Aqui é bom usar o qeu foi descrito pelo anotador humano, para comprovar o vies do modelo em noticias "inconclusivas"
+
+🎯 Casos com valor ilustrativo para publicação:
+- 196 — Excelente exemplo para o paper. A votação majoritária errou na categoria.
+- 202 — Útil para discussão sobre confiança no label e incerteza na categoria. Apesar de o modelo indicar “verídico”, a justificativa está alinhada com uma narrativa conhecida.
+- 151 — Exemplo didático de fake news evidente. GPT-4o-mini classifica corretamente. Referência direta: https://www.estadao.com.br/estadao-verifica/jornal-o-globo-debocha-bolsonaro-intestino-preso-enganoso/?srsltid=AfmBOopRp68-07zqnIA3hYOjGimlXHFE7HW5lVAxPw3m0vZP1uf097ZU
+- 153 — Caso de destaque: chat acerta simultaneamente o label e a categoria (especialmente no modelo 4.1-mini).
+- 192 — Exemplo positivo de vídeo de humor; modelos captaram bem o tom satírico.
+- 39 - gpt-4o-mini consegue realacionar o nome Senador Canedo a cidade de Goias, e atribui corretamente todas as classificações 
+- 172 - Evidência a categoria -> Usar justificativa dos anotadores
+
+📌 Casos a considerar com apoio do curador humano:
+- 22 — Demanda julgamento da perícia humana diretamente na plataforma.
+- 191, 127, 2 - casos qeu várias LLMs não conseguiram dar o parecer correto
+
+🧠 Casos atribuídos ao modelo "William" com resultados confiáveis:
+- 183, 191, 197, 200, 204, 194 — Classificações consistentes, reforçando confiabilidade do modelo.
+
+⚙️ Observações Técnicas:
+- Caso 125 exige revisão no pipeline de preprocessing, pois há inconsistência entre a imagem da notícia e sua presença no arquivo results_whisper_large-v3.csv.
+- 145 — Entrada presente, porém sem anotação. Revisar.
